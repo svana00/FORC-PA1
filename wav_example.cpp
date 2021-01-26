@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h> /* cos */
+#include <fstream>
 
 using namespace std;
 
@@ -84,10 +85,19 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample)
     header[41] = (unsigned char)(((unsigned int)byteRate & 0x0000FF00) >> 8);
     header[42] = (unsigned char)(((unsigned int)byteRate & 0x00FF0000) >> 16);
     header[43] = (unsigned char)(((unsigned int)byteRate & 0xFF000000) >> 24);
+
+    ofstream fout;
+    fout.open("example2.wav", ios::binary);
+
+    // fout << characters << endl;
+    fout.write(header, 43);
+
+    fout.close();
 }
 
 void addDataToArray(float sample)
 {
+    int sample_16 = (int)(sample * 32767);
 }
 
 int main()
