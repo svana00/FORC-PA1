@@ -14,8 +14,6 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample)
     int byteRate = sampleRate * noChannels * bitsSample / 8;
     int blockAlign = noChannels * bitsSample / 8;
 
-    int int_field = 0;
-
     // Set ChunkID at first 4 bytes
     header[0] = 'R';
     header[1] = 'I';
