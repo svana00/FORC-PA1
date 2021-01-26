@@ -37,7 +37,7 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample, int subChunk2Siz
     header[15] = ' ';
 
     // Subchunk 1 size
-    int subChunk1Size = (4 + 8 + 16 + 8 + 0);
+    int subChunk1Size = 16;
     header[16] = (unsigned char)(((unsigned int)subChunk1Size & 0x000000FF));
     header[17] = (unsigned char)(((unsigned int)subChunk1Size & 0x0000FF00) >> 8);
     header[18] = (unsigned char)(((unsigned int)subChunk1Size & 0x00FF0000) >> 16);
