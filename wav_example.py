@@ -4,8 +4,6 @@ import struct
 def makeWaveHeader(sampleRate, noChannels, bitsSample):
 
    # Compute values of header fields
-
-   noSamples  = duration * sampleRate    # Total number of samples for file
    byteRate   = int(sampleRate * noChannels * bitsSample/8)
    blockAlign = int(noChannels * bitsSample/8)
 
