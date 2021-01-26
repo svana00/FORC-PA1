@@ -85,7 +85,7 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample)
     header[43] = (unsigned char)(((unsigned int)byteRate & 0xFF000000) >> 24);
 }
 
-void addDataToArray()
+void addDataToArray(float sample)
 {
 }
 
