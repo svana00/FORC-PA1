@@ -21,11 +21,18 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample)
     header[3] = 'F';
 
     int chunkSize = (4 + 8 + 16 + 8 + 0);
-
     header[7] = (unsigned char)(((unsigned int)chunkSize & 0xFF000000) >> 24);
     header[6] = (unsigned char)(((unsigned int)chunkSize & 0x00FF0000) >> 16);
     header[5] = (unsigned char)(((unsigned int)chunkSize & 0x0000FF00) >> 8);
     header[4] = (unsigned char)(((unsigned int)chunkSize & 0x000000FF));
+
+    header[8] = 'W';
+    header[9] = 'A';
+    header[10] = 'V';
+    header[11] = 'E';
+    header[12] = 'f';
+    header[13] = 'm';
+    header[14] = ' ';
 }
 
 void addDataToArray()
