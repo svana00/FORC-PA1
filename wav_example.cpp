@@ -115,8 +115,8 @@ int main()
     ofstream fout;
     fout.open("example2.wav", ios::binary);
 
-    fout.write(header, 43);
-    fout.write(dataArray, 44099);
+    fout.write(header, 44);
+    fout.write(dataArray, 44100);
 
     fout.close();
 
