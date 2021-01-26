@@ -32,7 +32,8 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample)
     header[11] = 'E';
     header[12] = 'f';
     header[13] = 'm';
-    header[14] = ' ';
+    header[14] = 't';
+    header[15] = ' ';
 }
 
 void addDataToArray()
