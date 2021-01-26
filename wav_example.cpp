@@ -70,19 +70,19 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample)
     header[33] = (unsigned char)(((unsigned int)blockAlign & 0x0000FF00) >> 8);
 
     // Bits per sample
-    header[32] = (unsigned char)(((unsigned int)bitsSample & 0x000000FF));
-    header[33] = (unsigned char)(((unsigned int)bitsSample & 0x0000FF00) >> 8);
+    header[34] = (unsigned char)(((unsigned int)bitsSample & 0x000000FF));
+    header[35] = (unsigned char)(((unsigned int)bitsSample & 0x0000FF00) >> 8);
 
-    header[34] = 'd';
-    header[35] = 'a';
-    header[36] = 't';
+    header[36] = 'd';
     header[37] = 'a';
+    header[38] = 't';
+    header[39] = 'a';
 
     // Byte rate
-    header[38] = (unsigned char)(((unsigned int)byteRate & 0x000000FF));
-    header[39] = (unsigned char)(((unsigned int)byteRate & 0x0000FF00) >> 8);
-    header[40] = (unsigned char)(((unsigned int)byteRate & 0x00FF0000) >> 16);
-    header[41] = (unsigned char)(((unsigned int)byteRate & 0xFF000000) >> 24);
+    header[40] = (unsigned char)(((unsigned int)byteRate & 0x000000FF));
+    header[41] = (unsigned char)(((unsigned int)byteRate & 0x0000FF00) >> 8);
+    header[42] = (unsigned char)(((unsigned int)byteRate & 0x00FF0000) >> 16);
+    header[43] = (unsigned char)(((unsigned int)byteRate & 0xFF000000) >> 24);
 }
 
 void addDataToArray()
