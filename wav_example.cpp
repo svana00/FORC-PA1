@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h> /* cos */
 
 using namespace std;
 
@@ -102,6 +103,12 @@ int main()
     // Create the header for the wave file
     makeHeader(sampleRate, noChannels, 16);
     cout << header;
+
+    for (int i = 0; i < noSamples; i++)
+    {
+        float sample = cos(freq * i * 3.142 / sampleRate);
+        addDataToArray(sample);
+    }
 
     return 0;
 }
