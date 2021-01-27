@@ -83,16 +83,14 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample, int subChunk2Siz
     header[43] = (unsigned char)(((unsigned int)subChunk2Size & 0xFF000000) >> 24);
 }
 
-int main()
+int main(int argc, char* argv[])
 {
     int freq;
     double duration;
 
-    cout << "Enter frequency (integer): ";
-    cin >> freq;
+    freq = atoi(argv[2]);
 
-    cout << "Enter duration (real number): ";
-    cin >> duration;
+    duration = atof(argv[3]);
 
     int sampleRate = 44100; // Sample rate in HZ
     int noChannels = 1;     // Mono
@@ -125,8 +123,7 @@ int main()
 
     string fileName;
 
-    cout << "Enter file name: ";
-    cin >> fileName;
+    fileName = argv[1];
 
     fout.open(fileName + ".wav", ios::binary);
 
