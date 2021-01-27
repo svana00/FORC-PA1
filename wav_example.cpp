@@ -6,7 +6,6 @@ using namespace std;
 
 // Initialize global variables for header array and data array
 char header[44];
-char dataArray[441000];
 
 /* Add two functions here */
 void makeHeader(int sampleRate, int noChannels, int bitsSample, int subChunk2Size, int chunkSize)
@@ -84,14 +83,6 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample, int subChunk2Siz
     header[43] = (unsigned char)(((unsigned int)subChunk2Size & 0xFF000000) >> 24);
 }
 
-void addDataToArray(float sample, int i)
-{
-    int sample_16 = (int)(sample * 32767);
-
-    dataArray[2 * i] = (unsigned char)(((unsigned int)sample_16 & 0x000000FF));
-    dataArray[(2 * i) + 1] = (unsigned char)(((unsigned int)sample_16 & 0x0000FF00) >> 8);
-}
-
 int main()
 {
     int freq;
@@ -105,20 +96,28 @@ int main()
 
     int sampleRate = 44100; // Sample rate in HZ
     int noChannels = 1;     // Mono
-
+    
+    // size of data array = sample rate * duration * 2 bytes per sample
+    int dataSize = sampleRate*duration*2;
     int noSamples;
     noSamples = duration * sampleRate; // Total number of samples for file
 
+    // Calculate variables for header
     int subChunk2Size = (int)(duration * sampleRate * noChannels * 16 / 8);
     int chunkSize = subChunk2Size + 4 + 8 + 16 + 8;
 
     // Create the header for the wave file
     makeHeader(sampleRate, noChannels, 16, subChunk2Size, chunkSize);
 
+    char dataArray[dataSize];
     for (int i = 0; i < noSamples; i++)
     {
         float sample = cos(freq * i * 3.142 / sampleRate);
-        addDataToArray(sample, i);
+        
+        int sample_16 = (int)(sample * 32767);
+
+        dataArray[2 * i] = (unsigned char)(((unsigned int)sample_16 & 0x000000FF));
+        dataArray[(2 * i) + 1] = (unsigned char)(((unsigned int)sample_16 & 0x0000FF00) >> 8);
     }
 
     ifstream fin;
