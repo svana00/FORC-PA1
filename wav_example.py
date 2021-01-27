@@ -65,8 +65,9 @@ def addSample(wave, sample):
 if __name__ == "__main__":
 
     sampleRate = 44100  # Sample rate in Hz. (CD quality)
-    freq = 440  # A above middle C
-    duration = 0.5  # Length of tone - seconds
+    freq = int(input("Input frequency: "))
+    duration = float(input("Input duration: "))
+    # Length of tone - seconds
     noChannels = 1  # Mono
 
     noSamples = int(duration * sampleRate)  # Total number of samples for file

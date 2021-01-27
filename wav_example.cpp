@@ -86,22 +86,30 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample, int subChunk2Siz
 void addDataToArray(float sample, int i)
 {
     int sample_16 = (int)(sample * 32767);
-    
-    dataArray[2*i] = (unsigned char)(((unsigned int)sample_16 & 0x000000FF));
-    dataArray[(2*i) + 1] = (unsigned char)(((unsigned int)sample_16 & 0x0000FF00) >> 8);
+
+    dataArray[2 * i] = (unsigned char)(((unsigned int)sample_16 & 0x000000FF));
+    dataArray[(2 * i) + 1] = (unsigned char)(((unsigned int)sample_16 & 0x0000FF00) >> 8);
 }
 
 int main()
 {
+    int freq;
+    double duration;
+
+    cout << "Enter frequency (integer): ";
+    cin >> freq;
+
+    cout << "Enter duration (real number): ";
+    cin >> duration;
+
     int sampleRate = 44100; // Sample rate in HZ
-    int freq = 440;         // A above middle C
-    double duration = 0.5;  // Length of tone - seconds
     int noChannels = 1;     // Mono
 
     int noSamples;
     noSamples = duration * sampleRate; // Total number of samples for file
+    cout << noSamples;
 
-    int subChunk2Size = (int)(duration * sampleRate * noChannels * 16/8);
+    int subChunk2Size = (int)(duration * sampleRate * noChannels * 16 / 8);
     int chunkSize = subChunk2Size + 4 + 8 + 16 + 8;
     // Create the header for the wave file
     makeHeader(sampleRate, noChannels, 16, subChunk2Size, chunkSize);
@@ -112,8 +120,15 @@ int main()
         addDataToArray(sample, i);
     }
 
+    ifstream fin;
     ofstream fout;
-    fout.open("example2.wav", ios::binary);
+
+    string fileName;
+
+    cout << "Enter file name: ";
+    cin >> fileName;
+
+    fout.open(fileName + ".wav", ios::binary);
 
     fout.write(header, 44);
     fout.write(dataArray, 44100);
