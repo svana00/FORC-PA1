@@ -6,7 +6,7 @@ using namespace std;
 
 // Initialize global variables for header array and data array
 char header[44];
-char dataArray[44100];
+char dataArray[441000];
 
 /* Add two functions here */
 void makeHeader(int sampleRate, int noChannels, int bitsSample, int subChunk2Size, int chunkSize)
@@ -71,6 +71,7 @@ void makeHeader(int sampleRate, int noChannels, int bitsSample, int subChunk2Siz
     header[34] = (unsigned char)(((unsigned int)bitsSample & 0x000000FF));
     header[35] = (unsigned char)(((unsigned int)bitsSample & 0x0000FF00) >> 8);
 
+    // Subchunk 2 id
     header[36] = 'd';
     header[37] = 'a';
     header[38] = 't';
@@ -107,10 +108,10 @@ int main()
 
     int noSamples;
     noSamples = duration * sampleRate; // Total number of samples for file
-    cout << noSamples;
 
     int subChunk2Size = (int)(duration * sampleRate * noChannels * 16 / 8);
     int chunkSize = subChunk2Size + 4 + 8 + 16 + 8;
+
     // Create the header for the wave file
     makeHeader(sampleRate, noChannels, 16, subChunk2Size, chunkSize);
 
@@ -131,7 +132,7 @@ int main()
     fout.open(fileName + ".wav", ios::binary);
 
     fout.write(header, 44);
-    fout.write(dataArray, 44100);
+    fout.write(dataArray, noSamples);
 
     fout.close();
 
