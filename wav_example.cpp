@@ -7,7 +7,6 @@ using namespace std;
 // Initialize global variables for header array and data array
 char header[44];
 
-/* Add two functions here */
 void makeHeader(int sampleRate, int noChannels, int bitsSample, int subChunk2Size, int chunkSize)
 {
     int byteRate = sampleRate * noChannels * bitsSample / 8;
@@ -95,7 +94,7 @@ int main(int argc, char *argv[])
     int sampleRate = 44100; // Sample rate in HZ
     int noChannels = 1;     // Mono
 
-    // size of data array = sample rate * duration * 2 bytes per sample
+    // Size of data array = sample rate * duration * 2 bytes per sample
     int dataSize = sampleRate * duration * 2;
     int noSamples;
     noSamples = duration * sampleRate; // Total number of samples for file
@@ -107,6 +106,7 @@ int main(int argc, char *argv[])
     // Create the header for the wave file
     makeHeader(sampleRate, noChannels, 16, subChunk2Size, chunkSize);
 
+    // Insert the data into the data array
     char dataArray[dataSize];
     for (int i = 0; i < noSamples; i++)
     {
@@ -118,6 +118,7 @@ int main(int argc, char *argv[])
         dataArray[(2 * i) + 1] = (unsigned char)(((unsigned int)sample_16 & 0x0000FF00) >> 8);
     }
 
+    // Write header and data to wav file
     ifstream fin;
     ofstream fout;
 
