@@ -4,7 +4,8 @@
 
 We implemented version B with the bonus.
 
-## Compiling and running
-
+## Compile
 Run g++ -o wav_example wav_example.cpp on mac to compile.
-Then run with the command ./wav_example <--string argument for output file name--> <--int argument for frequency--> <--float argument for duration of the note-->
+
+## Run code
+Use command ./wav_example <-string argument for output file name-> <-int argument for frequency-> <-float argument for duration of the note->

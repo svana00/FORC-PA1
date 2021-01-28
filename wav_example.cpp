@@ -88,7 +88,6 @@ int main(int argc, char *argv[])
     double duration;
 
     freq = atoi(argv[2]);
-
     duration = atof(argv[3]);
 
     int sampleRate = 44100; // Sample rate in HZ
