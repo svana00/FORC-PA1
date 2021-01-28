@@ -2,7 +2,7 @@
 
 ## Version
 
-We implemented version B with the bonus.
+We implemented version B with the 5% bonus.
 
 ## Compile
 Run g++ -o wav_example wav_example.cpp on mac to compile.
